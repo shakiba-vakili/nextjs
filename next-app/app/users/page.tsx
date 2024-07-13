@@ -4,32 +4,42 @@ import React from 'react';
 interface User {
     id: number;
     name: string;
+    email: string;
 }
 
 // Define the UsersPage component as an asynchronous function
 const UsersPage = async () => {
-    // Fetch data from the API with revalidation interval set to 10 seconds
+    // Fetch data from the API, specifying no cache to ensure fresh data on each request
     const res = await fetch('https://jsonplaceholder.typicode.com/users', 
-    // {
-    //     // Get fresh data every 10 seconds
-    //     next: { revalidate: 10 }
-    // }
     {
-        //  if you use this the next js undrestand that this page is not static and the data may change
+        // This tells Next.js that this page is not static and the data may change
         cache: 'no-store'
-    }
-);
-    
+    });
+
     // Parse the JSON response and type it as an array of User objects
     const users: User[] = await res.json();
     
-    // Return the JSX to render the list of users
+    // Return the JSX to render the list of users in a table format
     return (
         <>
             <h1>Users</h1>
-            <ul>
-                {users.map(user => <li key={user.id}>{user.name}</li>)}
-            </ul>
+            <table className='table table-bordered'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* Iterate over the users array and render each user's name and email in a table row */}
+                    {users.map(user => 
+                        <tr key={user.id}>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </>
     );
 };

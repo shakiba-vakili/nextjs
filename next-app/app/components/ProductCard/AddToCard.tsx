@@ -4,7 +4,7 @@ import React from 'react'
 const AddToCard = () => {
   return (
     <div>
-      <button>AddToCard</button>
+      <button className='btn btn-primary'>AddToCard</button>
       
     </div>
   )

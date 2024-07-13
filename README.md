@@ -1,4 +1,4 @@
-# nextjs# **Next.js**
+# **Next.js**
 
 ### Youtube link:
 https://www.youtube.com/watch?v=ZVnjOPwW4ZA
